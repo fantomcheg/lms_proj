@@ -17,21 +17,21 @@ class Course(models.Model):
         ordering = ['title']
 
     def __str__(self):
-        return f'Участник {self.title}: Старт {self.start.date}'
+        return f'{self.title}: Старт {self.start_date}'
 
 
 class Lesson(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name='Курс')
+    name = models.CharField(verbose_name='Название урока', max_length=25,unique=True)
     preview = models.TextField(verbose_name='Описание урока', max_length=100)
-    start_date = models.DateField(verbose_name='Старт курса')
-    duration = models.PositiveIntegerField(verbose_name='Продолжительность')
-    price = models.PositiveIntegerField(verbose_name='Цена', blank=True)
-    count_lessons = models.PositiveIntegerField(verbose_name='Кол-во уроков')
+
 
     class Meta:
         verbose_name_plural = 'Уроки'
         verbose_name = 'Урок'
         ordering = ['course']
+    def __str__(self):
+        return f'{self.course.title}: Урок {self.name}'
 
 
 class Tracking(models.Model):

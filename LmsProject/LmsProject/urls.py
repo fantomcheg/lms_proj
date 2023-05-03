@@ -1,3 +1,5 @@
+
+
 """
 URL configuration for LmsProject project.
 
@@ -16,7 +18,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.contrib import admin
+from django.urls import path, include
 
 urlpatterns = [
     path('nimda2023/', admin.site.urls),
+    path('auth/', include('auth_app.urls')),
+    path('courses/', include('learning.urls'))
 ]
